@@ -1,28 +1,118 @@
-<html>
-<head>
-	<title>Title</title>
-</head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="style.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<body>
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Life Kart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    	<link rel="stylesheet" href="{% static "css/style1.css" %}">
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+          <i class="fa fa-heartbeat" style="font-size:58px;color:red"></i> &nbsp LIFE-KART</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signup/">SignUp</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+      <div class="text-center mycls1">
+        <h1>How to Use?</h1>
+        <h4>You can search any blood group you need.</h4>
+      </div>
+      <div class="c" style="color:white;">
+        <div class="searchbar">
+          <form method="post">
+						{% csrf_token %}
+            <select name="search" required>
+              <option value="" disabled selected="">Select</option>
+              <option value="O+">O+</option>
+  						<option value="O-">O-</option>
+  						<option value="A+">A+</option>
+  						<option value="A-">A-</option>
+  						<option value="B+">B+</option>
+  						<option value="B-">B-</option>
+  						<option value="AB+">AB+</option>
+  						<option value="AB-">AB-</option>
+            </select>
+            <div >
+              <button class="button" type="submit">Search &nbsp <i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+          </form>
+        </div>
 
 
-	<div class="wrapper">
-		<div class="container">
-			<h1>Welcome</h1>
 
-			<form class="form">
-				<input type="text" placeholder="Username">
-				<input type="password" placeholder="Password">
-				<button type="submit" id="login-button">Login</button>
-			</form>
-		</div>
-	</div>
 
-<script>
-</script>
-</body>
+      </div>
+      <center>
+      <div id="mytable">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Blood Bank/Donor</th>
+          <th>address</th>
+          <th>mobile</th>
+        </tr>
+     {% for u in var1 %}
+
+        <tr>
+         <td>{{u.name}}</td>
+         <td>{{u.type}}</td>
+         <td><a href="http://maps.google.com/?q={{u.address}}">{{u.address}}</a></td>
+         <td><a href="tel:{{u.mobile}}">{{u.mobile}}</a></td>
+       </tr>
+
+
+
+
+
+    {% endfor %}</table></div></center>
+
+
+
+
+    </div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 28.629849, lng: 77.372079};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 17, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiX4xuj9WYPegDVaUZDaOBUt_Z0DMf6Ts&callback=initMap"
+  type="text/javascript"></script>
+  </body>
 </html>

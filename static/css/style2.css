@@ -18,7 +18,7 @@
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  color: white;
+  color: black;
   font-weight: 300;
 }
 body ::-webkit-input-placeholder {
@@ -50,7 +50,7 @@ body :-ms-input-placeholder {
 .wrapper{
   background-image: url(https://i2.wp.com/d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Z4PS02T/red-cloud-smoke-ink-on-water-on-white-background_rxglukhkeg_thumbnail-full07.png);
   background-size: cover;
-  height:670px;
+  height:1280px;
 }
 @media only screen and (max-width: 600px) {
   .wrapper{
@@ -71,6 +71,9 @@ body :-ms-input-placeholder {
   transition-timing-function: ease-in-put;
   font-weight: 200;
   color:black !important;
+}
+label{
+  font-size: 20px;
 }
 form {
   padding: 20px 0;
@@ -145,6 +148,16 @@ form button {
 }
 form button:hover {
   background-color: maroon;
+  color: white;
+  transition-duration: 0.25s;
+}
+
+.mybtn{
+  background-color: #08030380 !important;
+  color: white !important;
+}
+.mybtn:hover{
+  background-color: maroon !important;
   color: white;
   transition-duration: 0.25s;
 }

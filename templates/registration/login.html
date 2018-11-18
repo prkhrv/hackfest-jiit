@@ -1,7 +1,7 @@
 <html>
 {% load staticfiles %}
 <head>
-	<title>Title</title>
+	<title>LIFE KART</title>
 </head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +19,18 @@
 		<div class="container">
 		<i class="fa fa-heartbeat" style="font-size:58px;color:red"></i>	<h1>LIFE KART</h1>
 
+		<div class="error">
+	 {% if form.errors %}
+					 {{ form.non_field_errors }}
+	 {% endif %}
+
+ </div>
+
+
 			<form class="form" method="post">
         {% csrf_token %}
-				<input type="text" name="username" placeholder="Username">
-				<input type="password" name="password" placeholder="Password">
+				<input type="text" name="username" placeholder="Username" required>
+				<input type="password" name="password" placeholder="Password" required>
 				<button type="submit" id="login-button">Login</button>
 			</form>
 		</div>
