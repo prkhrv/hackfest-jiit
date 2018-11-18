@@ -1,16 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form method="post">
-      {% csrf_token %}
-      {{form.as_p}}
-      <input type="submit" value="signup">
+{% load staticfiles %}
+<html>
+<head>
+	<title>Title</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static "css/style2.css" %}">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<body>
 
-    </form>
 
-  </body>
+	<div class="wrapper">
+		<div class="container">
+			<h1>Sign Up</h1>
+
+      <div id="error1">
+		{% if form.errors %}
+{% for field in form %}
+	 {% for error in field.errors %}
+			 <div class="alert">
+					 <strong>{{ error|escape }}</strong>
+			 </div>
+	 {% endfor %}
+{% endfor %}
+{% for error in form.non_field_errors %}
+	 <div class="alert">
+			 <strong>{{ error|escape }}</strong>
+	 </div>
+{% endfor %}
+{% endif %}
+			</div>
+
+			<form class="form" method="post">
+        {% csrf_token %}
+        <p><label for="id_username">Username:</label> <input class="input" type="text" name="username" maxlength="150" autofocus required id="id_username"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+<p><label for="id_name">Name:</label> <input class="input" type="text" name="name" maxlength="40" required id="id_name"></p>
+<p><select class="input" type="text" id="type" name="type" onchange="MyFunction();" required>
+					<option value="" disabled selected="">Select</option>
+					<option value="Donor">As a Donor</option>
+					<option value="Blood-Bank">As a Blood-Bank</option>
+				</select>
+</p>
+<p><label for="id_email">Email address:</label> <input class="input" type="email" name="email" maxlength="254" id="id_email"></p>
+<p><label for="id_mobile">Mobile:</label> <input class="input" type="text" name="mobile" maxlength="12" required id="id_mobile"></p>
+<p><label for="id_address">Address:</label> <input type="text" class="input" name="address" cols="40" rows="10" required id="id_address">
+</textarea></p>
+<p><label for="id_bloodgroup1">Bloodgroup1:</label> <input type="text" name="bloodgroup1" maxlength="4" id="id_bloodgroup1"></p>
+<p><label for="id_bloodgroup2">Bloodgroup2:</label> <input type="text" name="bloodgroup2" maxlength="4" id="id_bloodgroup2"></p>
+<p><label for="id_bloodgroup3">Bloodgroup3:</label> <input type="text" name="bloodgroup3" maxlength="4" id="id_bloodgroup3"></p>
+<p><label for="id_bloodgroup4">Bloodgroup4:</label> <input type="text" name="bloodgroup4" maxlength="4" id="id_bloodgroup4"></p>
+<p><label for="id_bloodgroup5">Bloodgroup5:</label> <input type="text" name="bloodgroup5" maxlength="4" id="id_bloodgroup5"></p>
+<p><label for="id_bloodgroup6">Bloodgroup6:</label> <input type="text" name="bloodgroup6" maxlength="4" id="id_bloodgroup6"></p>
+<p><label for="id_bloodgroup7">Bloodgroup7:</label> <input type="text" name="bloodgroup7" maxlength="4" id="id_bloodgroup7"></p>
+<p><label for="id_bloodgroup8">Bloodgroup8:</label> <input type="text" name="bloodgroup8" maxlength="4" id="id_bloodgroup8"></p>
+<p><label for="id_password1">Password:</label> <input type="password" name="password1" required id="id_password1"> </p>
+<p><label for="id_password2"> Re-type Password:</label> <input type="password" name="password2" required id="id_password2"> </p>
+
+        <input type="submit" name="" value="submit">
+		</div>
+	</div>
+
+<script>
+	function MyFunction(){
+		var1 = document.getElementById("type").value;
+		if(var1 == "Donor"){
+			document.getElementById("donor").style.display="block";
+      document.getElementById("blood-bank").style.display="none";
+      document.getElementsByClassName("checkbox").disabled=true;
+		}
+		else if(var2 = "Blood-Bank"){
+		document.getElementById("blood-bank").style.display="block";
+    document.getElementById("donor").style.display="none";
+
+		}
+	}
+</script>
+</body>
 </html>

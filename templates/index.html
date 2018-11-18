@@ -6,6 +6,14 @@
   </head>
   <body>
     <h1>welcome</h1>
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="search">
+      <input type="submit" name="searchbtn" value="search">
+
+    </form>
+
+    {{var1}}
 
   </body>
 </html>
